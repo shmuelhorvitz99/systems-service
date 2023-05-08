@@ -7,7 +7,7 @@ export class FeaturesManager {
         return FeaturesModel.find(query, {}, limit ? { limit, skip: limit * step } : {}).exec();
     }
 
-    public static async getFeaturesCount(query: Partial<Feature>): Promise<number> {
+    static async getFeaturesCount(query: Partial<Feature>): Promise<number> {
         return FeaturesModel.count(query);
     }
 
