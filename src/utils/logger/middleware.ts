@@ -1,8 +1,8 @@
 import expressWinston from 'express-winston';
-import { loggerOptions } from '.';
+import { logger } from '.';
 
 export const loggerMiddleware = expressWinston.logger({
-    ...(loggerOptions as expressWinston.LoggerOptions),
+    transports: [logger],
     expressFormat: true,
     statusLevels: true,
 });
