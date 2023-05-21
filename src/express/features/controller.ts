@@ -2,38 +2,38 @@ import { Response } from 'express';
 import { TypedRequest } from '../../utils/zod';
 import { FeaturesManager } from './manager';
 import {
-    createFeatureRequestSchema,
-    deleteFeatureRequestSchema,
-    getFeatureByIdRequestSchema,
-    getFeaturesByQueryRequestSchema,
-    getFeaturesCountRequestSchema,
-    updateFeatureRequestSchema,
+    createOneRequestSchema,
+    deleteOneRequestSchema,
+    getByIdRequestSchema,
+    getByQueryRequestSchema,
+    getCountRequestSchema,
+    updateOneRequestSchema,
 } from './validations';
 
 export class FeaturesController {
-    static async getFeaturesByQuery(req: TypedRequest<typeof getFeaturesByQueryRequestSchema>, res: Response) {
+    static async getByQuery(req: TypedRequest<typeof getByQueryRequestSchema>, res: Response) {
         const { step, limit, ...query } = req.query;
 
-        res.json(await FeaturesManager.getFeaturesByQuery(query, step, limit));
+        res.json(await FeaturesManager.getByQuery(query, step, limit));
     }
 
-    static async getFeaturesCount(req: TypedRequest<typeof getFeaturesCountRequestSchema>, res: Response) {
-        res.json(await FeaturesManager.getFeaturesCount(req.query));
+    static async getCount(req: TypedRequest<typeof getCountRequestSchema>, res: Response) {
+        res.json(await FeaturesManager.getCount(req.query));
     }
 
-    static async getFeatureById(req: TypedRequest<typeof getFeatureByIdRequestSchema>, res: Response) {
-        res.json(await FeaturesManager.getFeatureById(req.params.id));
+    static async getById(req: TypedRequest<typeof getByIdRequestSchema>, res: Response) {
+        res.json(await FeaturesManager.getById(req.params.id));
     }
 
-    static async createFeature(req: TypedRequest<typeof createFeatureRequestSchema>, res: Response) {
-        res.json(await FeaturesManager.createFeature(req.body));
+    static async createOne(req: TypedRequest<typeof createOneRequestSchema>, res: Response) {
+        res.json(await FeaturesManager.createOne(req.body));
     }
 
-    static async updateFeature(req: TypedRequest<typeof updateFeatureRequestSchema>, res: Response) {
-        res.json(await FeaturesManager.updateFeature(req.params.id, req.body));
+    static async updateOne(req: TypedRequest<typeof updateOneRequestSchema>, res: Response) {
+        res.json(await FeaturesManager.updateOne(req.params.id, req.body));
     }
 
-    static async deleteFeature(req: TypedRequest<typeof deleteFeatureRequestSchema>, res: Response) {
-        res.json(await FeaturesManager.deleteFeature(req.params.id));
+    static async deleteOne(req: TypedRequest<typeof deleteOneRequestSchema>, res: Response) {
+        res.json(await FeaturesManager.deleteOne(req.params.id));
     }
 }
