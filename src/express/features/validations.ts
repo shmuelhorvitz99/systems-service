@@ -14,7 +14,7 @@ const optionalFields = z
     .partial();
 
 // GET /api/features
-export const getFeaturesByQueryRequestSchema = z.object({
+export const getByQueryRequestSchema = z.object({
     body: z.object({}),
     query: z
         .object({
@@ -27,14 +27,14 @@ export const getFeaturesByQueryRequestSchema = z.object({
 });
 
 // GET /api/features/count
-export const getFeaturesCountRequestSchema = z.object({
+export const getCountRequestSchema = z.object({
     body: z.object({}),
     query: requiredFields.partial().merge(optionalFields),
     params: z.object({}),
 });
 
 // GET /api/features/:id
-export const getFeatureByIdRequestSchema = z.object({
+export const getByIdRequestSchema = z.object({
     body: z.object({}),
     query: z.object({}),
     params: z.object({
@@ -43,14 +43,14 @@ export const getFeatureByIdRequestSchema = z.object({
 });
 
 // POST /api/features
-export const createFeatureRequestSchema = z.object({
+export const createOneRequestSchema = z.object({
     body: requiredFields.merge(optionalFields),
     query: z.object({}),
     params: z.object({}),
 });
 
 // PUT /api/features/:id
-export const updateFeatureRequestSchema = z.object({
+export const updateOneRequestSchema = z.object({
     body: requiredFields.partial().merge(optionalFields),
     query: z.object({}),
     params: z.object({
@@ -59,7 +59,7 @@ export const updateFeatureRequestSchema = z.object({
 });
 
 // DELETE /api/features/:id
-export const deleteFeatureRequestSchema = z.object({
+export const deleteOneRequestSchema = z.object({
     body: z.object({}),
     query: z.object({}),
     params: z.object({

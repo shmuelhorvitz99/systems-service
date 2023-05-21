@@ -2,24 +2,24 @@ import { Router } from 'express';
 import { validateRequest, wrapController } from '../../utils/express/wrappers';
 import { FeaturesController } from './controller';
 import {
-    createFeatureRequestSchema,
-    deleteFeatureRequestSchema,
-    getFeatureByIdRequestSchema,
-    getFeaturesByQueryRequestSchema,
-    getFeaturesCountRequestSchema,
-    updateFeatureRequestSchema,
+    createOneRequestSchema,
+    deleteOneRequestSchema,
+    getByIdRequestSchema,
+    getByQueryRequestSchema,
+    getCountRequestSchema,
+    updateOneRequestSchema,
 } from './validations';
 
 export const featuresRouter = Router();
 
-featuresRouter.get('/', validateRequest(getFeaturesByQueryRequestSchema), wrapController(FeaturesController.getFeaturesByQuery));
+featuresRouter.get('/', validateRequest(getByQueryRequestSchema), wrapController(FeaturesController.getByQuery));
 
-featuresRouter.get('/count', validateRequest(getFeaturesCountRequestSchema), wrapController(FeaturesController.getFeaturesCount));
+featuresRouter.get('/count', validateRequest(getCountRequestSchema), wrapController(FeaturesController.getCount));
 
-featuresRouter.get('/:id', validateRequest(getFeatureByIdRequestSchema), wrapController(FeaturesController.getFeatureById));
+featuresRouter.get('/:id', validateRequest(getByIdRequestSchema), wrapController(FeaturesController.getById));
 
-featuresRouter.post('/', validateRequest(createFeatureRequestSchema), wrapController(FeaturesController.createFeature));
+featuresRouter.post('/', validateRequest(createOneRequestSchema), wrapController(FeaturesController.createOne));
 
-featuresRouter.put('/:id', validateRequest(updateFeatureRequestSchema), wrapController(FeaturesController.updateFeature));
+featuresRouter.put('/:id', validateRequest(updateOneRequestSchema), wrapController(FeaturesController.updateOne));
 
-featuresRouter.delete('/:id', validateRequest(deleteFeatureRequestSchema), wrapController(FeaturesController.deleteFeature));
+featuresRouter.delete('/:id', validateRequest(deleteOneRequestSchema), wrapController(FeaturesController.deleteOne));
