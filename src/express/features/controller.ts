@@ -11,29 +11,29 @@ import {
 } from './validations';
 
 export class FeaturesController {
-    static async getByQuery(req: TypedRequest<typeof getByQueryRequestSchema>, res: Response) {
+    static getByQuery = async (req: TypedRequest<typeof getByQueryRequestSchema>, res: Response) => {
         const { step, limit, ...query } = req.query;
 
         res.json(await FeaturesManager.getByQuery(query, step, limit));
-    }
+    };
 
-    static async getCount(req: TypedRequest<typeof getCountRequestSchema>, res: Response) {
+    static getCount = async (req: TypedRequest<typeof getCountRequestSchema>, res: Response) => {
         res.json(await FeaturesManager.getCount(req.query));
-    }
+    };
 
-    static async getById(req: TypedRequest<typeof getByIdRequestSchema>, res: Response) {
+    static getById = async (req: TypedRequest<typeof getByIdRequestSchema>, res: Response) => {
         res.json(await FeaturesManager.getById(req.params.id));
-    }
+    };
 
-    static async createOne(req: TypedRequest<typeof createOneRequestSchema>, res: Response) {
+    static createOne = async (req: TypedRequest<typeof createOneRequestSchema>, res: Response) => {
         res.json(await FeaturesManager.createOne(req.body));
-    }
+    };
 
-    static async updateOne(req: TypedRequest<typeof updateOneRequestSchema>, res: Response) {
+    static updateOne = async (req: TypedRequest<typeof updateOneRequestSchema>, res: Response) => {
         res.json(await FeaturesManager.updateOne(req.params.id, req.body));
-    }
+    };
 
-    static async deleteOne(req: TypedRequest<typeof deleteOneRequestSchema>, res: Response) {
+    static deleteOne = async (req: TypedRequest<typeof deleteOneRequestSchema>, res: Response) => {
         res.json(await FeaturesManager.deleteOne(req.params.id));
-    }
+    };
 }
