@@ -1,5 +1,5 @@
 import expressWinston from 'express-winston';
-import { logger } from '.';
+import { logger } from './index.js';
 
 export const loggerMiddleware = expressWinston.logger({
     transports: [logger],

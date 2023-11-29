@@ -1,26 +1,32 @@
 {
+  // totaltypescript.com/tsconfig-cheat-sheet
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "CommonJS",
-    "esModuleInterop": true,
-    "allowJs": false,
-    "sourceMap": true,
-    "removeComments": true,
-    "strict": true,
+    // Base Options
+    "target": "ES2022",
     "skipLibCheck": true,
-    "noImplicitAny": false,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+
+    // Strictness
+    "strict": true,
     "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": false,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
+
+    // Transpilation
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
     "outDir": "dist",
-    "lib": ["ESNext"]
+
+    "lib": ["ES2022"]
   },
   "include": ["src/**/*"]
 }

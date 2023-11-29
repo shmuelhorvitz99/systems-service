@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { featuresRouter } from './features/router';
+import { featuresRouter } from './features/router.js';
 
 export const appRouter = Router();
 

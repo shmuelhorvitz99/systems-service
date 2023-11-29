@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import { config } from '../../config';
-import { Feature, FeatureDocument } from './interface';
+import { config } from '../../config.js';
+import { FeatureDocument } from './interface.js';
 
-const FeaturesSchema = new mongoose.Schema<Feature>(
+const FeaturesSchema = new mongoose.Schema<FeatureDocument>(
     {
         name: {
             type: String,

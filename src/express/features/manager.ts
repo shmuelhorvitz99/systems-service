@@ -1,6 +1,6 @@
-import { DocumentNotFoundError } from '../../utils/errors';
-import { Feature, FeatureDocument } from './interface';
-import { FeaturesModel } from './model';
+import { DocumentNotFoundError } from '../../utils/errors.js';
+import { Feature, FeatureDocument } from './interface.js';
+import { FeaturesModel } from './model.js';
 
 export class FeaturesManager {
     static getByQuery = async (query: Partial<Feature>, step: number, limit?: number): Promise<FeatureDocument[]> => {

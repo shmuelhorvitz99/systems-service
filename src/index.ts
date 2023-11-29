@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import { config } from './config';
-import { Server } from './express/server';
-import { logger } from './utils/logger';
+import { config } from './config.js';
+import { Server } from './express/server.js';
+import { logger } from './utils/logger/index.js';
 
 const { mongo, service } = config;
 

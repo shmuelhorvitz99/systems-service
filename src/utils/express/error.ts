@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
-import { ServiceError } from '../errors';
+import { ServiceError } from '../errors.js';
 
 export const errorMiddleware = (error: Error, _req: Request, res: Response, next: NextFunction) => {
     /* istanbul ignore else */

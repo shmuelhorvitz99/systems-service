@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { zodMongoObjectId } from '../../utils/zod';
+import { zodMongoObjectId } from '../../utils/zod.js';
 
 const requiredFields = z
     .object({

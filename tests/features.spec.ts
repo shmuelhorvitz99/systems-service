@@ -5,9 +5,9 @@
 import mongoose from 'mongoose';
 import request from 'supertest';
 import { Express } from 'express';
-import { config } from '../src/config';
-import { Server } from '../src/express/server';
-import { Feature } from '../src/express/features/interface';
+import { config } from '../src/config/index.js';
+import { Server } from '../src/express/server.js';
+import { Feature } from '../src/express/features/interface.js';
 
 const { mongo } = config;
 
