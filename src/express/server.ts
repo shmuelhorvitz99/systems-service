@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 import { once } from 'events';
 import express from 'express';
 import helmet from 'helmet';

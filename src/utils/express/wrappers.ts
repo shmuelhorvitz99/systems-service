@@ -1,3 +1,5 @@
+/* eslint-disable promise/no-callback-in-promise */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { NextFunction, Request, Response } from 'express';
 import { AnyZodObject } from 'zod';
 import { TypedRequest } from '../zod.js';

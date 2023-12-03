@@ -1,6 +1,9 @@
 /* eslint-disable max-classes-per-file */
 export class ServiceError extends Error {
-    constructor(public code: number, message: string) {
+    constructor(
+        public code: number,
+        message: string,
+    ) {
         super(message);
     }
 }

@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import env from 'env-var';
+import * as env from 'env-var';
 
 export const config = {
     service: {
