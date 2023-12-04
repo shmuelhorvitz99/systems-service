@@ -11,6 +11,7 @@ module.exports = {
         'plugin:@typescript-eslint/stylistic-type-checked',
         'plugin:promise/recommended',
         'plugin:import/recommended',
+        'plugin:import/typescript',
         'plugin:prettier/recommended',
         'prettier',
     ],
@@ -26,17 +27,15 @@ module.exports = {
             '@typescript-eslint/parser': ['.ts', '.tsx'],
         },
         'import/resolver': {
-            typescript: {
-                alwaysTryTypes: true,
-                project: './tsconfig.json',
-            },
+            typescript: true,
             node: true,
         },
     },
-    ignorePatterns: ['*.cjs'],
+    ignorePatterns: ['*.cjs', '*.spec.ts'],
     rules: {
         quotes: ['error', 'single'],
         semi: ['error', 'always'],
         'import/no-unresolved': 'error',
+        'import/no-named-as-default-member': 'off',
     },
 };
