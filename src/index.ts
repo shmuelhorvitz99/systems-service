@@ -1,3 +1,4 @@
+/* v8 ignore start */
 import mongoose from 'mongoose';
 import { config } from './config.js';
 import { Server } from './express/server.js';

@@ -6,15 +6,16 @@ import { errorMiddleware } from '../utils/express/error.js';
 import { loggerMiddleware } from '../utils/logger/middleware.js';
 import { appRouter } from './router.js';
 
+/* v8 ignore start */
 export class Server {
     private app: express.Application;
 
     private http?: http.Server;
 
-    /* istanbul ignore next */
     constructor(private port: number) {
         this.app = Server.createExpressApp();
     }
+    /* v8 ignore end */
 
     static createExpressApp() {
         const app = express();
@@ -31,9 +32,10 @@ export class Server {
         return app;
     }
 
-    /* istanbul ignore next */
+    /* v8 ignore start */
     async start() {
         this.http = this.app.listen(this.port);
         await once(this.http, 'listening');
     }
+    /* v8 ignore end */
 }
