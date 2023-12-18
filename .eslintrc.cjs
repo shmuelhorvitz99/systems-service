@@ -37,5 +37,6 @@ module.exports = {
         semi: ['error', 'always'],
         'import/no-unresolved': 'error',
         'import/no-named-as-default-member': 'off',
+        'import/no-default-export': 'error',
     },
 };
