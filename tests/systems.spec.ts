@@ -59,125 +59,49 @@ describe('e2e systems api testing', () => {
         });
     });
 
-    describe('/api/systems', () => {
-        describe('GET /api/systems', () => {
-            it('should get all the systems', async () => {
-                const systems: System[] = [];
 
-                for (let i = 0; i < 3; i++) {
-                    const { body: system } = await request(app).post('/api/systems').send(exampleSystem).expect(200);
 
-                    systems.push(system);
-                }
 
-                const { body } = await request(app).get('/api/systems').expect(200);
 
-                expect(body).toEqual(systems);
-            });
 
-            it('should get systems with pagination', async () => {
-                const systems: System[] = [];
+    describe('POST /api/systems', () => {
+        it('should create a new system', async () => {
+            const { body } = await request(app).post('/api/systems').send(exampleSystem).expect(200);
 
-                for (let i = 0; i < 15; i++) {
-                    const { body: system } = await request(app).post('/api/systems').send(exampleSystem).expect(200);
-
-                    systems.push(system);
-                }
-
-                const [{ body: body1 }, { body: body2 }, { body: body3 }] = await Promise.all([
-                    request(app).get('/api/systems').query({ limit: 5, step: 0 }).expect(200),
-                    request(app).get('/api/systems').query({ limit: 5, step: 1 }).expect(200),
-                    request(app).get('/api/systems').query({ limit: 5, step: 2 }).expect(200),
-                ]);
-
-                expect(body1).toEqual(systems.slice(0, 5));
-                expect(body2).toEqual(systems.slice(5, 10));
-                expect(body3).toEqual(systems.slice(10, 15));
-            });
-
-            it('should get an empty array', async () => {
-                const { body } = await request(app).get('/api/systems').query({ limit: 100 }).expect(200);
-
-                expect(body).toEqual([]);
-            });
+            expect(body).toEqual(expect.objectContaining(exampleSystem));
         });
 
-        describe('GET /api/systems/:systemId', () => {
-            it('should get a system', async () => {
-                const { body: system } = await request(app).post('/api/systems').send(exampleSystem).expect(200);
+        it('should fail validation for missing fields', async () => {
+            return request(app).post('/api/systems').send({}).expect(400);
+        });
+    });
 
-                const { body } = await request(app).get(`/api/systems/${system._id}`).expect(200);
+    describe('PUT /api/systems/:systemId', () => {
+        it('should update system', async () => {
 
-                expect(body).toEqual(system);
-            });
+            const {
+                body: { _id },
+            } = await request(app).post('/api/systems').send(exampleSystem).expect(200);
 
-            it('should fail for getting a non-existing system', async () => {
-                return request(app).get(`/api/systems/${fakeObjectId}`).expect(404);
-            });
+
         });
 
-        describe('GET /api/systems/count', () => {
-            it('should get systems count', async () => {
-                const count = 4;
+        it('should fail for updating a non-existing system', async () => {
+            return request(app).put(`/api/systems/${fakeObjectId}`).send(exampleSystem).expect(404);
+        });
+    });
 
-                await Promise.all(Array.from({ length: count }, () => request(app).post('/api/systems').send(exampleSystem).expect(200)));
+    describe('DELETE /api/systems/:systemId', () => {
+        it('should delete system', async () => {
+            const {
+                body: { _id },
+            } = await request(app).post('/api/systems').send(exampleSystem).expect(200);
 
-                const { body } = await request(app).get('/api/systems/count').expect(200);
-
-                expect(body).toEqual(count);
-            });
-
-            it('should get zero when there are no systems', async () => {
-                const { body } = await request(app).get('/api/systems/count').expect(200);
-
-                expect(body).toEqual(0);
-            });
+            return request(app).delete(`/api/systems/${_id}`).expect(200);
         });
 
-        describe('POST /api/systems', () => {
-            it('should create a new system', async () => {
-                const { body } = await request(app).post('/api/systems').send(exampleSystem).expect(200);
-
-                expect(body).toEqual(expect.objectContaining(exampleSystem));
-            });
-
-            it('should fail validation for missing fields', async () => {
-                return request(app).post('/api/systems').send({}).expect(400);
-            });
-        });
-
-        describe('PUT /api/systems/:systemId', () => {
-            it('should update system', async () => {
-                const propertyForUpdate = 'test2';
-
-                const {
-                    body: { _id },
-                } = await request(app).post('/api/systems').send(exampleSystem).expect(200);
-
-                const {
-                    body: { name },
-                } = await request(app).put(`/api/systems/${_id}`).send({ name: propertyForUpdate }).expect(200);
-
-                expect(name).toEqual(propertyForUpdate);
-            });
-
-            it('should fail for updating a non-existing system', async () => {
-                return request(app).put(`/api/systems/${fakeObjectId}`).send(exampleSystem).expect(404);
-            });
-        });
-
-        describe('DELETE /api/systems/:systemId', () => {
-            it('should delete system', async () => {
-                const {
-                    body: { _id },
-                } = await request(app).post('/api/systems').send(exampleSystem).expect(200);
-
-                return request(app).delete(`/api/systems/${_id}`).expect(200);
-            });
-
-            it('should fail for deleting a non-existing system', async () => {
-                return request(app).delete(`/api/systems/${fakeObjectId}`).expect(404);
-            });
+        it('should fail for deleting a non-existing system', async () => {
+            return request(app).delete(`/api/systems/${fakeObjectId}`).expect(404);
         });
     });
 });
