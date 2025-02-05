@@ -9,31 +9,18 @@ const requiredFields = z
 
 const optionalFields = z
     .object({
-        age: z.number(),
+        status: z.boolean(),
     })
-    .partial();
 
-// GET /api/features
-export const getByQueryRequestSchema = z.object({
+// GET /api/systems/
+export const getAllRequestSchema = z.object({
     body: z.object({}),
-    query: z
-        .object({
-            step: z.coerce.number().min(0).default(0),
-            limit: z.coerce.number().optional(),
-        })
-        .merge(requiredFields.partial())
-        .merge(optionalFields),
+    query: z.object({}),
     params: z.object({}),
 });
 
-// GET /api/features/count
-export const getCountRequestSchema = z.object({
-    body: z.object({}),
-    query: requiredFields.partial().merge(optionalFields),
-    params: z.object({}),
-});
 
-// GET /api/features/:id
+// GET /api/systems/:id
 export const getByIdRequestSchema = z.object({
     body: z.object({}),
     query: z.object({}),
@@ -42,14 +29,14 @@ export const getByIdRequestSchema = z.object({
     }),
 });
 
-// POST /api/features
+// POST /api/systems
 export const createOneRequestSchema = z.object({
     body: requiredFields.merge(optionalFields),
     query: z.object({}),
     params: z.object({}),
 });
 
-// PUT /api/features/:id
+// PUT /api/systems/:id
 export const updateOneRequestSchema = z.object({
     body: requiredFields.partial().merge(optionalFields),
     query: z.object({}),
@@ -58,7 +45,7 @@ export const updateOneRequestSchema = z.object({
     }),
 });
 
-// DELETE /api/features/:id
+// DELETE /api/systems/:id
 export const deleteOneRequestSchema = z.object({
     body: z.object({}),
     query: z.object({}),
