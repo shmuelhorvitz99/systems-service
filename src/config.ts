@@ -7,6 +7,6 @@ export const config = {
     },
     mongo: {
         uri: env.get('MONGO_URI').default('mongodb://localhost').required().asString(),
-    systemsCollectionName: env.get('SYSTEMS_COLLECTION_NAME').default('systems').required().asString(),
+        systemsCollectionName: env.get('SYSTEMS_COLLECTION_NAME').default('systems').required().asString(),
     },
 };

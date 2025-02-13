@@ -1,13 +1,7 @@
 import { Router } from 'express';
 import { validateRequest, wrapController } from '../../utils/express/wrappers.js';
 import { SystemsController } from './controller.js';
-import {
-    createOneRequestSchema,
-    deleteOneRequestSchema,
-    getAllRequestSchema,
-    getByIdRequestSchema,
-    updateOneRequestSchema,
-} from './validations.js';
+import { createOneRequestSchema, deleteOneRequestSchema, getAllRequestSchema, getByIdRequestSchema, updateOneRequestSchema } from './validations.js';
 
 export const systemsRouter = Router();
 

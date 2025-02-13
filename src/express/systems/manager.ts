@@ -3,7 +3,6 @@ import { System, SystemDocument } from './interface.js';
 import { SystemsModel } from './model.js';
 
 export class SystemsManager {
-    
     static getAll = async (): Promise<SystemDocument[]> => {
         return SystemsModel.find().lean().exec();
     };
@@ -13,6 +12,11 @@ export class SystemsManager {
     };
 
     static createOne = async (system: System): Promise<SystemDocument> => {
+        const existingSystem = await SystemsModel.findOne({ name: system.name }).lean().exec();
+
+        if (existingSystem) {
+            throw new Error('System already exists');
+        }
         return SystemsModel.create(system);
     };
 

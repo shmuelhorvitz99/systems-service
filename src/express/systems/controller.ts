@@ -1,19 +1,12 @@
 import { Response } from 'express';
 import { TypedRequest } from '../../utils/zod.js';
 import { SystemsManager } from './manager.js';
-import {
-    createOneRequestSchema,
-    deleteOneRequestSchema,
-    getAllRequestSchema,
-    getByIdRequestSchema,
-    updateOneRequestSchema,
-} from './validations.js';
+import { createOneRequestSchema, deleteOneRequestSchema, getAllRequestSchema, getByIdRequestSchema, updateOneRequestSchema } from './validations.js';
 
 export class SystemsController {
-
-    static getAll = async (_req: TypedRequest<typeof getAllRequestSchema> ,res: Response) => {
+    static getAll = async (_req: TypedRequest<typeof getAllRequestSchema>, res: Response) => {
         res.json(await SystemsManager.getAll());
-    }
+    };
 
     static getById = async (req: TypedRequest<typeof getByIdRequestSchema>, res: Response) => {
         res.json(await SystemsManager.getById(req.params.id));

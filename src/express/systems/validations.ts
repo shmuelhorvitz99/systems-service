@@ -4,13 +4,9 @@ import { zodMongoObjectId } from '../../utils/zod.js';
 const requiredFields = z
     .object({
         name: z.string(),
-    })
-    .required();
-
-const optionalFields = z
-    .object({
         status: z.boolean(),
     })
+    .required();
 
 // GET /api/systems/
 export const getAllRequestSchema = z.object({
@@ -18,7 +14,6 @@ export const getAllRequestSchema = z.object({
     query: z.object({}),
     params: z.object({}),
 });
-
 
 // GET /api/systems/:id
 export const getByIdRequestSchema = z.object({
@@ -31,14 +26,14 @@ export const getByIdRequestSchema = z.object({
 
 // POST /api/systems
 export const createOneRequestSchema = z.object({
-    body: requiredFields.merge(optionalFields),
+    body: requiredFields,
     query: z.object({}),
     params: z.object({}),
 });
 
 // PUT /api/systems/:id
 export const updateOneRequestSchema = z.object({
-    body: requiredFields.partial().merge(optionalFields),
+    body: requiredFields,
     query: z.object({}),
     params: z.object({
         id: zodMongoObjectId,
