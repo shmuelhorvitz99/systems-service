@@ -6,6 +6,8 @@ import { errorMiddleware } from '../utils/express/error.js';
 import { loggerMiddleware } from '../utils/logger/middleware.js';
 import { appRouter } from './router.js';
 
+import cors from 'cors';
+
 /* v8 ignore start */
 export class Server {
     private app: express.Application;
@@ -20,6 +22,13 @@ export class Server {
     static createExpressApp() {
         const app = express();
 
+        app.use(
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+            cors({
+                origin: 'http://localhost:9000',
+                credentials: true,
+            }),
+        );
         app.use(helmet());
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));

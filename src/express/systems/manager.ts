@@ -4,7 +4,8 @@ import { SystemsModel } from './model.js';
 
 export class SystemsManager {
     static getAll = async (): Promise<SystemDocument[]> => {
-        return SystemsModel.find().lean().exec();
+        const sys = await SystemsModel.find().lean().exec();
+        return sys;
     };
 
     static getById = async (systemId: string): Promise<SystemDocument> => {
