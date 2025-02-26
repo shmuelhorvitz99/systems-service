@@ -69,8 +69,12 @@ describe('e2e system API testing', () => {
             createdSystemId = body._id;
         });
 
-        it('should fail validation for missing fields', async () => {
+        it(' validation should fail for an empty object', async () => {
             await request(app).post('/api/systems').send({}).expect(400);
+        });
+
+        it('should fail validation for invalid fields', async () => {
+            await request(app).post('/api/systems').send({ name: exampleSystem.name}).expect(400);
         });
     });
 
