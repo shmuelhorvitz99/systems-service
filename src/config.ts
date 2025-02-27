@@ -6,7 +6,7 @@ export const config = {
         port: env.get('PORT').default(8000).required().asPortNumber(),
     },
     mongo: {
-        uri: env.get('MONGO_URI').default('mongodb://localhost').required().asString(),
+        uri: env.get('MONGO_URI').default('mongodb://localhost/WhatsDown').required().asString(),
         systemsCollectionName: env.get('SYSTEMS_COLLECTION_NAME').default('systems').required().asString(),
     },
 };
